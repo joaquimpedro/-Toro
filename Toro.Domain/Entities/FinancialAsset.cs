@@ -9,7 +9,7 @@ namespace Toro.Domain.Entities
     {
         public Trader Trader { get; set; }
         public Stock Stock { get; set; }
-        public int amount { get; set; }
-        public decimal unitPrice { get; set; }
+        public int Amount { get; set; }
+        public decimal UnitPrice { get; set; }
     }
 }

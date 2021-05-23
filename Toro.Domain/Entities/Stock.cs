@@ -7,8 +7,8 @@ namespace Toro.Domain.Entities
 {
     public class Stock : BaseEntity
     {
-        public string symbol { get; set; }
-        public decimal currentPrice { get; set; }
+        public string Symbol { get; set; }
+        public decimal CurrentPrice { get; set; }
 
     }
 }
