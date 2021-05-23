@@ -10,9 +10,17 @@ namespace Toro.Persistence.Repositories
 {
     public class StockRepository : IStockRepository
     {
-        public List<Stock> GetTrends()
+        private List<Stock> TrendStocks = new List<Stock>() { 
+            new Stock{Symbol = "a", CurrentPrice = 1},
+            new Stock{Symbol = "b", CurrentPrice = 2},
+            new Stock{Symbol = "c", CurrentPrice = 3},
+            new Stock{Symbol = "d", CurrentPrice = 4},
+            new Stock{Symbol = "e", CurrentPrice = 5}
+        };
+
+        public Task<List<Stock>> GetTrends()
         {
-            throw new NotImplementedException();
+            return Task.FromResult(TrendStocks);
         }
     }
 }
