@@ -9,17 +9,25 @@ using Toro.Application.Response;
 
 namespace Toro.Domain.Commands
 {
-    public class OrderStockCommand : IRequest
+    public class OrderStockCommand : IRequest<string>
     {
         public string symbol { get; set; }
         public int amount { get; set; }
     }
 
-    public class OrderStockCommandHandler : IRequestHandler<OrderStockCommand>
+    public class OrderStockCommandHandler : IRequestHandler<OrderStockCommand, string>
     {
-        public Task<Unit> Handle(OrderStockCommand request, CancellationToken cancellationToken)
+        public Task<string> Handle(OrderStockCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+
+            // calcular o total das ações desejadas
+            // pegar o saldo do usuario
+            // verificar se o usuário tem saldo suficiente
+            // registrar a compra:
+            //     salvar as ações compradas
+            //     debitar do saldo
+
+            return Task.FromResult("");
         }
     }
 }

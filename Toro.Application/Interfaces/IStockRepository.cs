@@ -9,7 +9,7 @@ namespace Toro.Application.Interfaces
 {
     public interface IStockRepository
     {
-        public List<Stock> GetTrends();
+        public Task<List<Stock>> GetTrends();
       
     }
 }
