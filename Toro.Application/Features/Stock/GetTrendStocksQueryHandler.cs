@@ -1,18 +1,12 @@
 ﻿using MediatR;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Toro.Application.Interfaces;
-using Toro.Application.Response;
+using Toro.Application.Response.Stock;
 
-namespace Toro.Application.Queries
+namespace Toro.Application.Features.Stock
 {
-    public class GetTrendStocksQuery : IRequest<List<StockResponse>>
-    {
-    }
-
     public class GetTrendStocksQueryHandler : IRequestHandler<GetTrendStocksQuery, List<StockResponse>>
     {
 
@@ -37,5 +31,4 @@ namespace Toro.Application.Queries
             return result;
         }
     }
-
 }

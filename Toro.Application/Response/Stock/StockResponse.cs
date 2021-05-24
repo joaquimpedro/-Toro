@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Toro.Application.Response
+namespace Toro.Application.Response.Stock
 {
     public class StockResponse 
     {
