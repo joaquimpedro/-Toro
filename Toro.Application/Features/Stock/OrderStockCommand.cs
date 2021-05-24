@@ -4,7 +4,7 @@ namespace Toro.Application.Features.Stock
 {
     public class OrderStockCommand : IRequest<string>
     {
-        public string symbol { get; set; }
-        public int amount { get; set; }
+        public string Symbol { get; set; }
+        public int Amount { get; set; }
     }
 }
