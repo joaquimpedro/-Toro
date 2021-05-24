@@ -56,6 +56,8 @@ namespace Toro.Application.Features.Stock
 
                 trader.Amount -= totalAmount;
 
+                //trader add financialAsset
+
                 await _financialAssetsRepository.Add(financialAsset);
                 await _traderRepository.Update(trader);
             }
