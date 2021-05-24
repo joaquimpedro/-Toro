@@ -8,11 +8,11 @@ namespace Toro.Persistence.Repositories
     public class StockRepository : IStockRepository
     {
         private readonly List<Stock> _trendStocks = new List<Stock>() { 
-            new Stock{Symbol = "a", CurrentPrice = 1},
-            new Stock{Symbol = "b", CurrentPrice = 2},
-            new Stock{Symbol = "c", CurrentPrice = 3},
-            new Stock{Symbol = "d", CurrentPrice = 4},
-            new Stock{Symbol = "e", CurrentPrice = 5}
+            new Stock{Id = 1, Symbol = "a", CurrentPrice = 1},
+            new Stock{Id = 2, Symbol = "b", CurrentPrice = 2},
+            new Stock{Id = 3, Symbol = "c", CurrentPrice = 3},
+            new Stock{Id = 4, Symbol = "d", CurrentPrice = 4},
+            new Stock{Id = 5, Symbol = "e", CurrentPrice = 5}
         };
 
         public Task<Stock> GetBySymbol(string symbol)

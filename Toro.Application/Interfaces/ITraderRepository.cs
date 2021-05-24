@@ -10,6 +10,6 @@ namespace Toro.Application.Interfaces
     public interface ITraderRepository
     {
         public Task<Trader> GetById(int id);
-        public Task Update(Trader trader);
+        public Task<int> Update(Trader trader);
     }
 }

@@ -17,8 +17,11 @@ namespace Toro.Persistence.Repositories
             return Task.FromResult(_traders.Find(t => t.Id == id));
         }
 
-        public Task Update(Trader trader)
+        public Task<int> Update(Trader trader)
         {
+            // Precisa tratar quando não encontrar o trader.
+            // Como o caso não é possível no fluxo atual da aplição, não criarei o teste e não implementarei a validação.
+
             var index = _traders.FindIndex(t => t.Id == trader.Id);
             _traders[index] = trader;
 
