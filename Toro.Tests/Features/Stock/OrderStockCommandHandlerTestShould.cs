@@ -29,7 +29,8 @@ namespace Toro.Tests.Features.Stock
 
             var result = await query.Handle(request, new CancellationToken());
 
-            Assert.Equal("sucesso", result);
+            Assert.False(result.Error);
+            Assert.Equal("sucesso", result.Data);
         }
 
         [Theory]
@@ -48,10 +49,10 @@ namespace Toro.Tests.Features.Stock
 
             var handler = new OrderStockCommandHandler(new StockRepository(), new TraderRepository());
 
-            Func<Task> act = () => handler.Handle(request, new CancellationToken());
+            var result = await handler.Handle(request, new CancellationToken());
 
-            var exception = await Assert.ThrowsAsync<AppException>(act);
-            Assert.Equal("saldo insuficiente", exception.Message);
+            Assert.True(result.Error);
+            Assert.Equal("saldo insuficiente", result.Data);
         }
 
         [Theory]
@@ -69,11 +70,10 @@ namespace Toro.Tests.Features.Stock
             };
             var handler = new OrderStockCommandHandler(new StockRepository(), new TraderRepository());
 
-            Func<Task> act = () => handler.Handle(request, new CancellationToken());
+            var result = await handler.Handle(request, new CancellationToken());
 
-            var exception = await Assert.ThrowsAsync<AppException>(act);
-
-            Assert.Equal("ativo inválido", exception.Message);
+            Assert.True(result.Error);
+            Assert.Equal("ativo inválido", result.Data);
         }
 
 

@@ -3,11 +3,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using Toro.Application.Exceptions;
 using Toro.Application.Interfaces;
+using Toro.Application.Response.common;
 using Toro.Domain.Entities;
 
 namespace Toro.Application.Features.Stock
 {
-    public class OrderStockCommandHandler : IRequestHandler<OrderStockCommand, string>
+    public class OrderStockCommandHandler : IRequestHandler<OrderStockCommand, BaseResponse<string>>
     {
         private readonly IStockRepository _repository;
         private readonly ITraderRepository _traderRepository;
@@ -18,11 +19,11 @@ namespace Toro.Application.Features.Stock
             _traderRepository = traderRepository;
         }
 
-        public async Task<string> Handle(OrderStockCommand request, CancellationToken cancellationToken)
+        public async Task<BaseResponse<string>> Handle(OrderStockCommand request, CancellationToken cancellationToken)
         {
 
             // calcular o total das ações desejadas
-            // pegar o saldo do trader
+            // pegar o saldo do trader logado
             // verificar se o trader tem saldo suficiente
             // registrar a compra:
             //     salvar as ações compradas
@@ -32,17 +33,16 @@ namespace Toro.Application.Features.Stock
 
             if(stock is null)
             {
-                throw new AppException("ativo inválido");
+                return await Task.FromResult(new BaseResponse<string>("ativo inválido") { Error = true });
             }
 
             var totalAmount = stock.CurrentPrice * request.Amount;
 
-            //Passando o ID 1, mas aqui deveria pegar o Trader logado;
             var trader = await _traderRepository.GetById(1);
 
             if (trader.Amount < totalAmount)
             {
-                throw new AppException("saldo insuficiente");
+                return await Task.FromResult(new BaseResponse<string>("saldo insuficiente") { Error = true });
             } 
 
             var financialAsset = trader.FinancialAssets.Find(f => f.Stock.Symbol == stock.Symbol);
@@ -66,9 +66,8 @@ namespace Toro.Application.Features.Stock
             trader.Amount -= totalAmount;
 
             await _traderRepository.Update(trader);
-            
 
-            return await  Task.FromResult("sucesso");
+            return await Task.FromResult(new BaseResponse<string>("sucesso"));
         }
     }
 }
