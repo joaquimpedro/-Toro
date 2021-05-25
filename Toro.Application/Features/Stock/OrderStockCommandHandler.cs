@@ -42,7 +42,7 @@ namespace Toro.Application.Features.Stock
 
             if (trader.Amount < totalAmount)
             {
-                throw new AppException("saldo insufiente");
+                throw new AppException("saldo insuficiente");
             } 
 
             var financialAsset = trader.FinancialAssets.Find(f => f.Stock.Symbol == stock.Symbol);

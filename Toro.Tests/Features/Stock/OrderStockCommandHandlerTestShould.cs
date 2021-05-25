@@ -1,6 +1,8 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Toro.Application.Exceptions;
 using Toro.Application.Features.Stock;
 using Toro.Persistence.Repositories;
 using Xunit;
@@ -34,7 +36,7 @@ namespace Toro.Tests.Features.Stock
         [InlineData("a", 1001)]
         [InlineData("b", 501)]
         [InlineData("c", 350)]
-        public async Task Handle_OrderStockCommand_WithoutInsuficientFounds(string symbol, int amount)
+        public async Task Handle_OrderStockCommandWithoutInsuficientFounds_ThrowsAppException(string symbol, int amount)
         {
             //Mockar o repositorio. O repositório, hoje, é estático mas deveria se conectar num db.
 
@@ -43,11 +45,13 @@ namespace Toro.Tests.Features.Stock
                 Symbol = symbol,
                 Amount = amount
             };
-            var query = new OrderStockCommandHandler(new StockRepository(), new TraderRepository());
 
-            var result = await query.Handle(request, new CancellationToken());
+            var handler = new OrderStockCommandHandler(new StockRepository(), new TraderRepository());
 
-            Assert.Equal("saldo insufiente", result);
+            Func<Task> act = () => handler.Handle(request, new CancellationToken());
+
+            var exception = await Assert.ThrowsAsync<AppException>(act);
+            Assert.Equal("saldo insuficiente", exception.Message);
         }
 
         [Theory]
@@ -63,11 +67,13 @@ namespace Toro.Tests.Features.Stock
                 Symbol = symbol,
                 Amount = amount
             };
-            var query = new OrderStockCommandHandler(new StockRepository(), new TraderRepository());
+            var handler = new OrderStockCommandHandler(new StockRepository(), new TraderRepository());
 
-            var result = await query.Handle(request, new CancellationToken());
+            Func<Task> act = () => handler.Handle(request, new CancellationToken());
 
-            Assert.Equal("ativo inválido", result);
+            var exception = await Assert.ThrowsAsync<AppException>(act);
+
+            Assert.Equal("ativo inválido", exception.Message);
         }
 
 
