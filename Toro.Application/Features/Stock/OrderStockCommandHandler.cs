@@ -11,13 +11,11 @@ namespace Toro.Application.Features.Stock
     {
         private readonly IStockRepository _repository;
         private readonly ITraderRepository _traderRepository;
-        private readonly IFinancialAssetsRepository _financialAssetsRepository;
 
-        public OrderStockCommandHandler(IStockRepository repository, ITraderRepository traderRepository, IFinancialAssetsRepository financialAssetsRepository)
+        public OrderStockCommandHandler(IStockRepository repository, ITraderRepository traderRepository)
         {
             _repository = repository;
             _traderRepository = traderRepository;
-            _financialAssetsRepository = financialAssetsRepository;
         }
 
         public async Task<string> Handle(OrderStockCommand request, CancellationToken cancellationToken)
@@ -67,7 +65,6 @@ namespace Toro.Application.Features.Stock
 
             trader.Amount -= totalAmount;
 
-            await _financialAssetsRepository.Add(financialAsset);
             await _traderRepository.Update(trader);
             
 

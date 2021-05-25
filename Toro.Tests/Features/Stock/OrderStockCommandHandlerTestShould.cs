@@ -23,7 +23,7 @@ namespace Toro.Tests.Features.Stock
                 Symbol = symbol,
                 Amount = amount
             };
-            var query = new OrderStockCommandHandler(new StockRepository(), new TraderRepository(), new FinancialAssetsRepository());
+            var query = new OrderStockCommandHandler(new StockRepository(), new TraderRepository());
 
             var result = await query.Handle(request, new CancellationToken());
 
@@ -43,7 +43,7 @@ namespace Toro.Tests.Features.Stock
                 Symbol = symbol,
                 Amount = amount
             };
-            var query = new OrderStockCommandHandler(new StockRepository(), new TraderRepository(), new FinancialAssetsRepository());
+            var query = new OrderStockCommandHandler(new StockRepository(), new TraderRepository());
 
             var result = await query.Handle(request, new CancellationToken());
 
@@ -63,7 +63,7 @@ namespace Toro.Tests.Features.Stock
                 Symbol = symbol,
                 Amount = amount
             };
-            var query = new OrderStockCommandHandler(new StockRepository(), new TraderRepository(), new FinancialAssetsRepository());
+            var query = new OrderStockCommandHandler(new StockRepository(), new TraderRepository());
 
             var result = await query.Handle(request, new CancellationToken());
 

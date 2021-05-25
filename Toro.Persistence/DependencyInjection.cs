@@ -10,6 +10,7 @@ namespace Toro.Persistence
         public static void AddPersistence(this IServiceCollection services)
         {
             services.AddScoped<IStockRepository, StockRepository>();
+            services.AddScoped<ITraderRepository, TraderRepository>();
         }
 
     }
