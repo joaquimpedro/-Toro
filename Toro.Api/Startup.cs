@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Reflection;
+using Toro.Api.Middlewares;
 using Toro.Application;
 using Toro.Persistence;
 
@@ -27,6 +28,7 @@ namespace Toro
             services.AddControllers();
             services.AddApplication();
             services.AddPersistence();
+            
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -42,10 +44,13 @@ namespace Toro
 
             app.UseAuthorization();
 
+            app.UseMiddleware<ErrorHandlerMiddleware>();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+
         }
     }
 }
