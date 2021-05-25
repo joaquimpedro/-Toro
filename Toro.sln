@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toro.Application", "Toro.Ap
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toro.Persistence", "Toro.Persistence\Toro.Persistence.csproj", "{90860444-40AF-46F9-AD0C-21E82B0410C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Toro.Tests", "Toro.Tests\Toro.Tests.csproj", "{0B076386-12A2-4211-9524-F4F5F2CE39A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toro.Tests", "Toro.Tests\Toro.Tests.csproj", "{0B076386-12A2-4211-9524-F4F5F2CE39A0}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{817E76A9-A7EE-4129-9BE3-A30AE84A8807}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{0B076386-12A2-4211-9524-F4F5F2CE39A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B076386-12A2-4211-9524-F4F5F2CE39A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B076386-12A2-4211-9524-F4F5F2CE39A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{817E76A9-A7EE-4129-9BE3-A30AE84A8807}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{817E76A9-A7EE-4129-9BE3-A30AE84A8807}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{817E76A9-A7EE-4129-9BE3-A30AE84A8807}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{817E76A9-A7EE-4129-9BE3-A30AE84A8807}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
