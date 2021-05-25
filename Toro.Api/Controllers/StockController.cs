@@ -16,7 +16,7 @@ namespace Toro.Api.Controllers
             return Ok(result);
         }
 
-        [HttpGet("order")]
+        [HttpPost("order")]
         public async Task<IActionResult> OrderStock(
             [FromBody] OrderStockCommand command,
             [FromServices] IMediator mediator)

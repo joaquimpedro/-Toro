@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
+using Toro.Application.Exceptions;
 using Toro.Application.Interfaces;
 using Toro.Domain.Entities;
 
@@ -33,7 +34,7 @@ namespace Toro.Application.Features.Stock
 
             if(stock is null)
             {
-                return await Task.FromResult("ativo inválido");
+                throw new AppException("ativo inválido");
             }
 
             var totalAmount = stock.CurrentPrice * request.Amount;
@@ -43,25 +44,32 @@ namespace Toro.Application.Features.Stock
 
             if (trader.Amount < totalAmount)
             {
-                return await Task.FromResult("saldo insufiente");
+                throw new AppException("saldo insufiente");
+            } 
 
-            } else
+            var financialAsset = trader.FinancialAssets.Find(f => f.Stock.Symbol == stock.Symbol);
+
+            if(financialAsset is null)
             {
-                var financialAsset = new FinancialAsset
+                financialAsset = new FinancialAsset
                 {
                     Amount = request.Amount,
                     Stock = stock,
-                    UnitPrice = stock.CurrentPrice
+                    UnitPrice = stock.CurrentPrice,
+                    Trader = trader
                 };
+                trader.FinancialAssets.Add(financialAsset);
 
-                trader.Amount -= totalAmount;
-
-                //trader add financialAsset
-
-                await _financialAssetsRepository.Add(financialAsset);
-                await _traderRepository.Update(trader);
+            } else
+            {
+                trader.FinancialAssets.FindAll(f => f.Stock.Symbol == stock.Symbol).ForEach(f => f.Amount += request.Amount);
             }
 
+            trader.Amount -= totalAmount;
+
+            await _financialAssetsRepository.Add(financialAsset);
+            await _traderRepository.Update(trader);
+            
 
             return await  Task.FromResult("sucesso");
         }
