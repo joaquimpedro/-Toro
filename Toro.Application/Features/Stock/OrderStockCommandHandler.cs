@@ -33,7 +33,7 @@ namespace Toro.Application.Features.Stock
 
             if(stock is null)
             {
-                return await Task.FromResult(new BaseResponse<string>("ativo inválido") { Error = true });
+                return await Task.FromResult(new BaseResponse<string>() { Error = true, ErrorMessage = "ativo inválido" });
             }
 
             var totalAmount = stock.CurrentPrice * request.Amount;
@@ -42,7 +42,7 @@ namespace Toro.Application.Features.Stock
 
             if (trader.Amount < totalAmount)
             {
-                return await Task.FromResult(new BaseResponse<string>("saldo insuficiente") { Error = true });
+                return await Task.FromResult(new BaseResponse<string>() { Error = true, ErrorMessage = "saldo insuficiente" });
             } 
 
             var financialAsset = trader.FinancialAssets.Find(f => f.Stock.Symbol == stock.Symbol);

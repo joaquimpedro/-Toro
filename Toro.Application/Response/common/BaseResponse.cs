@@ -6,6 +6,10 @@ namespace Toro.Application.Response.common
 {
     public class BaseResponse<T>
     {
+        public BaseResponse()
+        {
+
+        }
 
         public BaseResponse(T data)
         {
@@ -14,7 +18,7 @@ namespace Toro.Application.Response.common
         }
 
         public bool Error { get; set; }
-        public string Message { get; set; }
         public T Data { get; set; }
+        public string ErrorMessage { get; set; }
     }
 }

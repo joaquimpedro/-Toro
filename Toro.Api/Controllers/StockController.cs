@@ -10,10 +10,16 @@ namespace Toro.Api.Controllers
     public class StockController : ControllerBase
     {
         [HttpGet("trends")]
-        public async Task<IActionResult> Trends([FromServices] IMediator mediator)  
+        public async Task<IActionResult> GetTrends([FromServices] IMediator mediator)
         {
             var result = await mediator.Send(new GetTrendStocksQuery());
-            return Ok(result);
+
+            if (result.Error)
+            {
+                return BadRequest(result.ErrorMessage);
+            }
+
+            return Ok(result.Data);
         }
 
         [HttpPost("order")]
@@ -22,7 +28,13 @@ namespace Toro.Api.Controllers
             [FromServices] IMediator mediator)
         {
             var result = await mediator.Send(command);
-            return  Ok(result);
+
+            if (result.Error)
+            {
+                return BadRequest(result.ErrorMessage);
+            }
+
+            return Ok(result.Data);
         }
     }
 }

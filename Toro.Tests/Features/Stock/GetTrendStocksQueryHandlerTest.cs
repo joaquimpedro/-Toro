@@ -18,7 +18,7 @@ namespace Toro.Tests.Features.Stock
 
             var result = await query.Handle(request, new CancellationToken());
 
-            Assert.Equal(5, result.Count);
+            Assert.Equal(5, result.Data.Count);
         }
     }
 }

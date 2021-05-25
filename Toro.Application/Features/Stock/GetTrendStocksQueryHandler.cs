@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Toro.Application.Interfaces;
+using Toro.Application.Response.common;
 using Toro.Application.Response.Stock;
 
 namespace Toro.Application.Features.Stock
 {
-    public class GetTrendStocksQueryHandler : IRequestHandler<GetTrendStocksQuery, List<StockResponse>>
+    public class GetTrendStocksQueryHandler : IRequestHandler<GetTrendStocksQuery, BaseResponse<List<StockResponse>>>
     {
 
         private readonly IStockRepository _repository;
@@ -17,7 +18,7 @@ namespace Toro.Application.Features.Stock
             _repository = repository;
         }
 
-        public async Task<List<StockResponse>> Handle(GetTrendStocksQuery request, CancellationToken cancellationToken)
+        public async Task<BaseResponse<List<StockResponse>>> Handle(GetTrendStocksQuery request, CancellationToken cancellationToken)
         {
             var trends = await _repository.GetTrends();
             var result = new List<StockResponse>();
@@ -28,7 +29,9 @@ namespace Toro.Application.Features.Stock
                 result.Add(new StockResponse { Symbol = stock.Symbol, CurrentPrice = stock.CurrentPrice });
             }
 
-            return result;
+            var response = new BaseResponse<List<StockResponse>>(result);
+
+            return response;
         }
     }
 }
