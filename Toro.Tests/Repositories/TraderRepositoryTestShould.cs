@@ -30,14 +30,14 @@ namespace Toro.Tests.Repositories
         {
             var trader = await _repository.GetById(1);
             trader.Name = "novo nome";
-            trader.Amount = 50;
+            trader.AccountAmmount = 50;
             var result =  await _repository.Update(trader);
 
             Assert.Equal(1, result);
 
             var reloadedObject = await _repository.GetById(1);
             Assert.Equal(trader.Name, reloadedObject.Name);
-            Assert.Equal(trader.Amount, reloadedObject.Amount);
+            Assert.Equal(trader.AccountAmmount, reloadedObject.AccountAmmount);
         }
 
         // Precisa do teste quando não encontrar o id.

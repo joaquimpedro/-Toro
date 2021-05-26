@@ -8,7 +8,7 @@ namespace Toro.Application.Response.Stock
     public class StockResponse
     {
         public string Symbol { get; set; }
-        public decimal CurrentPrice { get; set; }
+        public double CurrentPrice { get; set; }
 
     }
 }

@@ -8,12 +8,12 @@ namespace Toro.Persistence.Repositories
     public class TraderRepository : ITraderRepository
     {
         private readonly List<Trader> _traders = new List<Trader>() { 
-            new Trader{Id = 1, Name = "João e Maria", Amount = 1000, FinancialAssets = new List<FinancialAsset>()}
+            new Trader{Id = 1, Name = "João e Maria", AccountAmmount = 1000, FinancialAssets = new List<FinancialAsset>()}
         };
 
         public Task<Trader> GetById(int id)
         {
-            _traders.Add(new Trader { Id = 1, Name = "João e Maria", Amount = 1000 });
+            _traders.Add(new Trader { Id = 1, Name = "João e Maria", AccountAmmount = 1000 });
             return Task.FromResult(_traders.Find(t => t.Id == id));
         }
 

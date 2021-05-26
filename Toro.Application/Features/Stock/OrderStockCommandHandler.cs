@@ -40,7 +40,7 @@ namespace Toro.Application.Features.Stock
 
             var trader = await _traderRepository.GetById(1);
 
-            if (trader.Amount < totalAmount)
+            if (trader.AccountAmmount < totalAmount)
             {
                 return await Task.FromResult(new BaseResponse<string>() { Error = true, ErrorMessage = "saldo insuficiente" });
             } 
@@ -63,7 +63,7 @@ namespace Toro.Application.Features.Stock
                 trader.FinancialAssets.FindAll(f => f.Stock.Symbol == stock.Symbol).ForEach(f => f.Amount += request.Amount);
             }
 
-            trader.Amount -= totalAmount;
+            trader.AccountAmmount -= totalAmount;
 
             await _traderRepository.Update(trader);
 
