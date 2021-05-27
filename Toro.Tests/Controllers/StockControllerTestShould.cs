@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Toro.Api.Controllers;
-using Toro.Application.Features.Stock;
+using Toro.Application.Features.Stocks;
 using Toro.Application.Response.common;
 using Toro.Application.Response.Stock;
 using Xunit;

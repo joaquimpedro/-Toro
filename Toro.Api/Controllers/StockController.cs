@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using Toro.Application.Features.Stock;
+using Toro.Application.Features.Stocks;
 
 namespace Toro.Api.Controllers
 {

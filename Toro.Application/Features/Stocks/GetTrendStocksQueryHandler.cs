@@ -6,7 +6,7 @@ using Toro.Application.Interfaces;
 using Toro.Application.Response.common;
 using Toro.Application.Response.Stock;
 
-namespace Toro.Application.Features.Stock
+namespace Toro.Application.Features.Stocks
 {
     public class GetTrendStocksQueryHandler : IRequestHandler<GetTrendStocksQuery, BaseResponse<List<StockResponse>>>
     {

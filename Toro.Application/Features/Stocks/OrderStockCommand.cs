@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Toro.Application.Response.common;
 
-namespace Toro.Application.Features.Stock
+namespace Toro.Application.Features.Stocks
 {
     public class OrderStockCommand : IRequest<BaseResponse<string>>
     {

@@ -1,12 +1,11 @@
 ﻿using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
-using Toro.Application.Exceptions;
 using Toro.Application.Interfaces;
 using Toro.Application.Response.common;
 using Toro.Domain.Entities;
 
-namespace Toro.Application.Features.Stock
+namespace Toro.Application.Features.Stocks
 {
     public class OrderStockCommandHandler : IRequestHandler<OrderStockCommand, BaseResponse<string>>
     {
