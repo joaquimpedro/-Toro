@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Toro.Application.Exceptions;
+
 using Toro.Application.Features.Stock;
 using Toro.Persistence.Repositories;
 using Xunit;
