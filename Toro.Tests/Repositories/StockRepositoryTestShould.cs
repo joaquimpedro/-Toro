@@ -14,7 +14,7 @@ namespace Toro.Tests.Repositories
         public async void GetBySymbol_SymbolExists_ReturnStock()
         {
             var repository = new StockRepository();
-            var stock = await repository.GetBySymbol("a");
+            var stock = await repository.GetBySymbol("PETR4");
 
             Assert.NotNull(stock);
             Assert.Equal(1, stock.Id);
